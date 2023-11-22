@@ -1,11 +1,11 @@
 {
-    "name": "azaharizaman/octopusai-plugin",
+    "name": "azaharizaman/octopus-ai-plugin",
     "type": "october-plugin",
-    "description": "No description provided yet...",
+    "description": "OctoberCMS OctopusAI Plugin",
     "require": {
         "composer/installers": "~1.0",
         "fzaninotto/faker": "^1.9",
-        "openai-php/client": "^0.6.4",
-        "openai-php/laravel": "^0.6.3"
+        "openai-php/client": "^0.8",
+        "openai-php/laravel": "^0.8"
     }
 }
