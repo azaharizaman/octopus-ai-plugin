@@ -1,5 +1,5 @@
 {
-    "name": "azaharizaman/octopus-ai-plugin",
+    "name": "azaharizaman/octopusai-plugin",
     "type": "october-plugin",
     "description": "OctoberCMS OctopusAI Plugin",
     "require": {
