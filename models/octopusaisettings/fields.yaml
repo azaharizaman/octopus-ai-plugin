@@ -1,0 +1,84 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+tabs:
+    fields:
+        api_type:
+            label: Choice of API
+            type: radio
+            options:
+                'openai': OpenAI API 
+                'huggingface': HuggingFace API
+            span: left
+            tab: Configurations
+            inlineOptions: true
+            default: 'openai'
+        openai_api_key:
+            label: 'API Key'
+            type: text
+            span: full
+            tab: Configurations
+        aimodel:
+            label: AI Model
+            type: text
+            span: auto
+            placeholder: gpt-3.5-turbo-instruct
+            tab: Configurations
+            comment: Specify the name of the model.
+        max_token:
+            label: 'Max Token'
+            type: number
+            span: auto
+            comment: Longer teken will enable the AI to generate more content. Shorter token may get the result truncated before if complete.
+            tab: Configurations
+        persona:
+            label: Persona
+            comment: 'Persona can affect the response of the AI, and sometime mimics the behavior of the person associated with this pesona.'
+            type: text
+            tab: Configurations
+        context:
+            label: Context
+            type: textarea
+            comment: 'Context is additional knowledge the AI model should be aware of. If the context is relevant to the current text, it may use it in its response.'
+            tab: Configurations
+        intonation:
+            label: Intonation
+            type: dropdown
+            span: auto
+            tab: Configurations
+            default: Professional
+            options:
+                Neutral: Neutral
+                Enthusiastic: Enthusiastic
+                Inquisitive: Inquisitive
+                Playful: Playful
+                Sensitive: Sensitive
+                Professional: Professional
+                Empathetic: Empathetic
+                Contemplative: Contemplative
+                Witty: Witty
+                Funny: Funny
+        language:
+            label: Language
+            type: dropdown
+            span: auto
+            tab: Configurations
+            options:
+                English: English
+                Spanish: Spanish
+                Simplified Chinese: Simplified Chinese
+                Bahasa Malaysia: Bahasa Malaysia
+                Bahasa Indonesia: Bahasa Indonesia
+                Thai: Thai
+                Elvish: Elvish
+                Na'vi Language: Na'vi Language
+        test_text_input:
+            label: Test Text Input
+            type: aitext
+            span: full
+            tab: Test
+        test_textarea:
+            label: Test AI Text Area
+            type: aitextarea
+            span: full
+            tab: Test

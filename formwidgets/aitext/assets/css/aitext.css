@@ -1,0 +1,14 @@
+/*
+ * This is a sample StyleSheet file used by AIText
+ *
+ * You can delete this file if you want
+ */
+ .is-regenerating {
+    display: none;
+    }
+    html[data-ajax-progress] .is-regenerating {
+        display: block;
+    }
+    html[data-ajax-progress] .ai-toggle {
+        display: none;
+    }
