@@ -6,3 +6,25 @@ columns:
     id:
         label: ID
         searchable: true
+    title:
+        label: Title
+        type: text
+    record_type:
+        label: Record Type
+        type: text
+    test_sentiment_analysis_source:
+        label: Test Sentiment Analysis Source
+        type: summary
+        limitChars: 100
+    test_sentiment_analysis:
+        label: Sentiment Analysis
+        type: selectable
+        options:
+            'Positive' : [Positive, '#00c04b']
+            'Negative' : [Negative, '#ed3419']
+            'Neutral' : [Neutral, '#88acc4']
+    test_sentiment_analysis_score:
+        label: Sentiment Analysis Score
+        type: number
+
+    

@@ -3,21 +3,26 @@
 # ===================================
 tabs:
     fields:
-        api_type:
-            label: Choice of API
-            type: radio
-            options:
-                'openai': OpenAI API 
-                'huggingface': HuggingFace API
+        _section:
+            label: OpenAI
+            type: section
+            comment: Find ore from OpenAI documentation
+            span: full
+            tab: Configurations
+        enable_open_ai:
+            label: Enable OpenAI
+            type: checkbox
             span: left
             tab: Configurations
-            inlineOptions: true
-            default: 'openai'
         openai_api_key:
             label: 'API Key'
             type: text
             span: full
             tab: Configurations
+            trigger:
+                field: enable_open_ai
+                action: show
+                condition: checked
         aimodel:
             label: AI Model
             type: text
@@ -25,27 +30,144 @@ tabs:
             placeholder: gpt-3.5-turbo-instruct
             tab: Configurations
             comment: Specify the name of the model.
+            trigger:
+                field: enable_open_ai
+                action: show
+                condition: checked
         max_token:
             label: 'Max Token'
             type: number
             span: auto
             comment: Longer teken will enable the AI to generate more content. Shorter token may get the result truncated before if complete.
             tab: Configurations
+            trigger:
+                field: enable_open_ai
+                action: show
+                condition: checked
+        
+        _section2:
+            label: Huggingface Hub API
+            type: section
+            comment: Find ore from Huggingface documentation
+            span: full
+            tab: Configurations
+        enable_huggingface_api:
+            label: Enable Huggingface API
+            type: checkbox
+            tab: Configurations
+        huggingface_api_key:
+            label: Huggigface API Key
+            type: text
+            span: full
+            tab: Configurations
+            trigger:
+                field: enable_huggingface_api
+                action: show
+                condition: checked
+        enable_text_generation:
+            label: Enable Text Generation
+            type: switch
+            default: 1
+            comment: Enable or disable text generation
+            span: auto
+            tab: Configurations
+            trigger:
+                field: enable_huggingface_api
+                action: show
+                condition: checked
+        enable_text_summarization:
+            label: Enable Text Summarization
+            type: switch
+            default: 1
+            comment: Enable or disable text summarization
+            span: auto
+            tab: Configurations
+            trigger:
+                field: enable_huggingface_api
+                action: show
+                condition: checked
+        text_generation_model:
+            label: Text Generation Model
+            type: text
+            default: gpt2
+            comment: The model to use for text generation
+            span: auto
+            tab: Configurations
+            trigger:
+                field: enable_huggingface_api
+                action: show
+                condition: checked
+        text_summarization_model:
+            label: Text Summarization Model
+            type: text
+            default: bart-large-cnn
+            comment: The model to use for text summarization
+            span: auto
+            tab: Configurations
+            trigger:
+                field: enable_huggingface_api
+                action: show
+                condition: checked
+        enable_fill_mask:
+            label: Enable Fill Mask
+            type: switch
+            default: 1
+            comment: Enable or disable fill mask
+            span: auto
+            tab: Configurations
+            trigger:
+                field: enable_huggingface_api
+                action: show
+                condition: checked
+        enable_sentiment_analysis:
+            label: Enable Sentiment Analysis
+            type: switch
+            default: 1
+            comment: Enable or disable sentiment analysis
+            span: auto
+            tab: Configurations
+            trigger:
+                field: enable_huggingface_api
+                action: show
+                condition: checked
+        fill_mask_model:
+            label: Fill Mask Model
+            type: text
+            default: distilroberta-base
+            comment: The model to use for fill mask
+            span: auto
+            tab: Configurations
+            trigger:
+                field: enable_huggingface_api
+                action: show
+                condition: checked
+        sentiment_analysis_model:
+            label: Sentiment Analysis Model
+            type: text
+            default: distilbert-base-uncased-finetuned-sst-2-english
+            comment: The model to use for sentiment analysis
+            span: auto
+            tab: Configurations
+            trigger:
+                field: enable_huggingface_api
+                action: show
+                condition: checked
+            
         persona:
             label: Persona
             comment: 'Persona can affect the response of the AI, and sometime mimics the behavior of the person associated with this pesona.'
             type: text
-            tab: Configurations
+            tab: Prompting
         context:
             label: Context
             type: textarea
             comment: 'Context is additional knowledge the AI model should be aware of. If the context is relevant to the current text, it may use it in its response.'
-            tab: Configurations
+            tab: Prompting
         intonation:
             label: Intonation
             type: dropdown
             span: auto
-            tab: Configurations
+            tab: Prompting
             default: Professional
             options:
                 Neutral: Neutral
@@ -62,7 +184,7 @@ tabs:
             label: Language
             type: dropdown
             span: auto
-            tab: Configurations
+            tab: Prompting
             options:
                 English: English
                 Spanish: Spanish
@@ -82,3 +204,11 @@ tabs:
             type: aitextarea
             span: full
             tab: Test
+        test_sentiment_analysis:
+            label: Test AI Sentiment Analysis
+            type: textarea
+            span: left
+        # test_sentiment_analysis_result:
+        #     label: Test AI Sentiment Analysis Result
+        #     type: partial
+        #     path: f_test_sentiment_analysis

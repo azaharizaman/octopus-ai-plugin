@@ -10,6 +10,11 @@ use Model;
 class Record extends Model
 {
     use \October\Rain\Database\Traits\Validation;
+    use \AzahariZaman\OctopusAI\Traits\HasSentimentAnalysis;
+
+    public $sentimentAnalysisFields = [
+        'test_sentiment_analysis' => 'test_sentiment_analysis_source'
+    ];
 
     /**
      * @var string table name

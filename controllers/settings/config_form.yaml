@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Setting
+
+# Model Form Field configuration
+form: $/azaharizaman/octopusai/models/octopusaisettings/fields.yaml
+
+# Model Class name
+modelClass: AzahariZaman\OctopusAI\Models\OctopusAISettings
+
+# Default redirect location
+defaultRedirect: azaharizaman/octopusai/settings
+
+# Create page
+create:
+    title: backend::lang.form.create_title
+    redirect: azaharizaman/octopusai/settings/update/:id
+    redirectClose: azaharizaman/octopusai/settings
+
+# Update page
+update:
+    title: backend::lang.form.update_title
+    redirect: azaharizaman/octopusai/settings
+    redirectClose: azaharizaman/octopusai/settings
+
+# Preview page
+preview:
+    title: backend::lang.form.preview_title

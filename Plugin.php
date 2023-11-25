@@ -70,13 +70,11 @@ class Plugin extends PluginBase
      */
     public function registerNavigation()
     {
-        return []; // Remove this line to activate
-
         return [
             'octopusai' => [
                 'label' => 'OctopusAI',
-                'url' => Backend::url('azaharizaman/octopusai/mycontroller'),
-                'icon' => 'icon-leaf',
+                'url' => Backend::url('azaharizaman/octopusai/records'),
+                'icon' => 'icon-train',
                 'permissions' => ['azaharizaman.octopusai.*'],
                 'order' => 500,
             ],

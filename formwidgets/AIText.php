@@ -1,9 +1,8 @@
 <?php namespace AzahariZaman\OctopusAI\FormWidgets;
 
-use AzahariZaman\OctopusAI\Models\OctopusAISettings;
+use AzahariZaman\OctopusAI\Models\OctopusAISettings as Settings;
 use Backend\Classes\FormWidgetBase;
-use OpenAI;
-use AzahariZaman\OctopusAI\Classes\Client as OctopusAIClient;
+use AzahariZaman\OctopusAI\Classes\OpenAIClient as Client;
 
 /**
  * AIText Form Widget
@@ -47,13 +46,14 @@ class AIText extends FormWidgetBase
         return $value;
     }
 
-    public function onRewrite()
+    public function onExecute()
     {
         $value = post($this->getFieldName());
+        $task = post('task');
 
-        $client = new OctopusAIClient;
+        $client = new Client;
 
-        $response = $client->rewrite($value);
+        $response = $client->execute($task, $value);
 
         $this->prepareVars();
         $this->vars['value'] = $response;
@@ -61,56 +61,4 @@ class AIText extends FormWidgetBase
         return ['#'.$this->getId() => $this->makePartial('aitext')];
     }
 
-    public function onComplete()
-    {
-        $value = post($this->getFieldName());
-
-        $client = new OctopusAIClient;
-
-        $response = $client->complete($value);
-
-        $this->prepareVars();
-        $this->vars['value'] = $response;
-
-        return ['#'.$this->getId() => $this->makePartial('aitext')];
-    }
-
-    public function onSummarize()
-    {
-        $value = post($this->getFieldName());
-
-        $client = new OctopusAIClient;
-
-        $response = $client->summarize($value);
-
-        $this->prepareVars();
-        $this->vars['value'] = $response;
-        
-        return ['#'.$this->getId() => $this->makePartial('aitext')];
-    }
-
-    public function onElaborate()
-    {
-        $value = post($this->getFieldName());
-
-        $client = new OctopusAIClient;
-
-        $response = $client->elaborate($value);
-
-        $this->prepareVars();
-        $this->vars['value'] = $response;
-        
-        return ['#'.$this->getId() => $this->makePartial('aitext')];
-    }
-
-    public function onPrompt()
-    {
-        $value = post($this->getFieldName());
-
-        $client = new OctopusAIClient;
-        $response = $client->prompt($value);
-        $this->prepareVars();
-        $this->vars['value'] = $response;
-        return ['#'.$this->getId() => $this->makePartial('aitext')];
-    }
 }

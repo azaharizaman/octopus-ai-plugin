@@ -3,16 +3,38 @@
 # ===================================
 
 fields:
-    search:
-        label: Search
-        type: partial
-        path: f_search
-        span: full
     title:
         label: Title
         type: text
+        span: full
+    prompt:
+        label: Prompt
+        type: textarea
         span: full
     generated:
         label: Generated
         type: textarea
         span: full
+    test_sentiment_analysis_source:
+        label: Test Sentiment Analysis Source
+        type: textarea
+        span: full
+    test_sentiment_analysis:
+        label: Test Sentiment Analysis
+        type: text
+        span: left
+        disabled: true
+    test_sentiment_analysis_score:
+        label: Test Sentiment Analysis Score
+        span: right
+        type: number
+        disabled: true
+    test_classification_source:
+        label: Test Classification Source
+        type: textarea
+        span: full
+    test_classification:
+        label: Test Classification
+        type: text
+        span: left
+        disabled: true
