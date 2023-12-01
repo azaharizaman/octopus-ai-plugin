@@ -1,0 +1,18 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+    model_name:
+        label: Model Name
+        type: text
+    model_description:
+        label: Model Description
+        type: text
+    model_api:
+        label: Model API
+        type: text
+        

@@ -28,28 +28,29 @@
             <div class="dropdown-menu">
                 <a class="dropdown-item" href="#"
                     data-request-update="{ aitext: '#<?= $this->getId() ?>' }" 
-                    data-request="<?= $eventHandlerRewrite ?>"
+                    data-request="<?= $eventHandlerOnInferTextRewrite ?>"
                     data-request-loading=".<?= $this->getId('input') ?>is-regenerating"
                 >Rewrite</a>
                 <a class="dropdown-item" href="#"
                     data-request-update="{ aitext: '#<?= $this->getId() ?>' }"
-                    data-request="<?= $eventHandlerComplete ?>"
+                    data-request="<?= $eventHandlerOnInferTextCompletion ?>"
                     data-request-loading=".<?= $this->getId('input') ?>is-regenerating"
                 >Complete Text</a>
                 <a class="dropdown-item" href="#"
                     data-request-update="{ aitext: '#<?= $this->getId() ?>' }"
-                    data-request="<?= $eventHandlerSummarize ?>"
+                    data-request="<?= $eventHandlerOnInferTextSummarization ?>"
                     data-request-loading=".<?= $this->getId('input') ?>is-regenerating"
                 >Summarize
                 <a class="dropdown-item" href="#"
                     data-request-update="{ aitext: '#<?= $this->getId() ?>' }"
-                    data-request="<?= $eventHandlerElaborate ?>"
+                    data-request-data="{ mode: 'text-rewrite-expand' }"
+                    data-request="<?= $eventHandlerOnInferTextRewrite ?>"
                     data-request-loading=".<?= $this->getId('input') ?>is-regenerating"
-                >Elaborate</a>
+                >Expand</a>
                 <hr class="dropdown-divider">
                 <a class="dropdown-item" href="#"
                     data-request-update="{ aitext: '#<?= $this->getId() ?>' }"
-                    data-request="<?= $eventHandlerPrompt ?>"
+                    data-request="<?= $eventHandlerOnInferTextPrompt ?>"
                     data-request-loading=".<?= $this->getId('input') ?>is-regenerating"
                 >Execute as Prompt</a>
             </div>

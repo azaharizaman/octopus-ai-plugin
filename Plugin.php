@@ -72,11 +72,26 @@ class Plugin extends PluginBase
     {
         return [
             'octopusai' => [
+                'sideMenu' => [
+                    'records' => [
+                        'label' => 'OctopusAI',
+                        'url' => Backend::url('azaharizaman/octopusai/records'),
+                        'icon' => 'icon-train',
+                        'permissions' => ['azaharizaman.octopusai.*'],
+                        'order' => 500,
+                    ],
+                    'models' => [
+                        'label'=> 'AI Models',
+                        'url'=> Backend::url('azaharizaman/octopusai/aimodels'),
+                        'icon'=> 'icon-pencil',
+                        'permissions' => ['azaharizaman.octopusai.*'],
+                        'order' => 200,
+                    ],
+                ],
                 'label' => 'OctopusAI',
                 'url' => Backend::url('azaharizaman/octopusai/records'),
-                'icon' => 'icon-train',
-                'permissions' => ['azaharizaman.octopusai.*'],
-                'order' => 500,
+                'icon'=> 'icon-huggingface',
+                'permission' => ['azaharizaman.octopusai.*'],
             ],
         ];
     }

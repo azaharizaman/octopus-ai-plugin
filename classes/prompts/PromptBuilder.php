@@ -49,7 +49,7 @@ class PromptBuilder
         $intonation = Settings::get('intonation');
         $language = Settings::get('language');
 
-        $personaBuilder = new PersonaBuilder();
+        $personaBuilder = new PesonaBuilder();
         $contextBuilder = new ContextBuilder();
         $intonationBuilder = new IntonationBuilder();
         $languageBuilder = new LanguageBuilder();
@@ -71,15 +71,15 @@ class PromptBuilder
         }
         
         switch ($mode) {
-            case 'rewrite':
+            case 'text-rewrite':
                 return $this->prompt . 'Without repeating or explaining your persona, please rephrase the following sentence while keeping the word count approximately the same: ' . $value;
-            case 'complete':
+            case 'text-completion':
                 return $this->prompt . 'Without repeating or explaining your persona, complete the sentence: ' . $value;
-            case 'summarize':
+            case 'text-summarization':
                 return $this->prompt . 'Without repeating or explaining your persona, please summarize the following sentences into a much shorter result: ' . $value;
-            case 'elaborate':
+            case 'text-expansion':
                 return $this->prompt . 'Without repeating or explaining your persona, please further elaborate on these sentences: ' . $value;
-            case 'prompt':
+            case 'text-prompt':
                 return $this->prompt . 'Without repeating or explaining your persona, please respond to the following: ' . $value;
             default:
                 return $this->prompt . $value;

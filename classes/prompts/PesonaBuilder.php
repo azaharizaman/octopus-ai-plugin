@@ -1,6 +1,6 @@
 <?php namespace AzahariZaman\OctopusAI\Classes\Prompts;
 
-class PersonaBuilder
+class PesonaBuilder
 {
     /**
      * Build persona-related prompt.

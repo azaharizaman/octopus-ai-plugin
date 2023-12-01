@@ -1,0 +1,61 @@
+tasks:
+  label: Task
+  view:
+    list:
+      columns:
+        task_code:
+          label: Task Code
+          type: text
+        task_name:
+          label: Task Name
+          type: text
+        task_prompt:
+          lael: Prompt
+          type: text
+        pivot[specific_prompt]:
+          label: Specific Prompt
+          tpe: text
+    toolbarButtons: create|add
+  manage:
+    list:
+      columns:
+        task_code:
+          label: Task Code
+          type: text
+        task_name:
+          label: Task Name
+          type: text
+        task_prompt:
+          label: Prompt
+          type: text
+    form:
+      fields:
+        task_name:
+          label: Task Name
+          type: text
+          span: auto
+        task_code:
+          label: Task Code
+          type: text
+          span: auto
+          preset:
+            field: task_name
+            type: slug
+        task_description:
+          label: Task Description
+          type: textarea
+          span: full
+        task_prompt:
+          label: Task Prompt
+          type: text
+          span: full
+  pivot:
+    form:
+      fields:
+        pivot[specific_prompt]:
+          label: Specific Prompt
+          type: textarea
+        pivot[response_handler]:
+          label: Response Handler
+          type: codeeditor
+    

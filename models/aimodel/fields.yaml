@@ -1,0 +1,54 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    model_name:
+        label: Model Title
+        type: text
+        span: auto
+    model_api:
+        label: Model API
+        type: dropdown
+        span: auto
+        options:
+            OpenAI: OpenAI API
+            Huggingface: Huggingface API
+        comment: Set which API the model will be using.
+    model_description:
+        label: Model Description
+        type: aitext
+        comment: SHort discription that will be use to briefly describe this model in the Model Selection dropdown
+        span: full
+tabs:
+    fields:
+        model_card:
+            label: Model Card
+            type: markdown
+            span: full
+            tab: Model Card
+            size: huge
+        model_response_handler:
+            label: Response Handler
+            type: codeeditor
+            span: full
+            tab: Respons Handler
+            language: php
+            comment: Fuction to handle the response in this format fn($response);
+        model_tasks:
+            label: Model Tasks
+            type: checkboxlist
+            options:
+                'text_completion': 'Text Completion'
+                'text_summarization': 'Text Summarization'
+                'text_classification': 'Text Classification'
+                'text_generation': 'Text Generation'
+                'fill_mask': 'Fill Mask'
+            tab: Configurations
+            span: auto
+        tasks:
+            label: Tasks
+            type: partial
+            path: r_tasks
+            span: full
+            tab: Tasks

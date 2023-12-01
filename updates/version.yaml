@@ -2,3 +2,10 @@ v1.0.1: First version of OctopusAI
 v1.0.2:
   - Create the record table
   - create_records_table.php
+v1.0.3:
+  - Create Model table
+  - create_a_i_models_table.php
+v1.0.4:
+  - Add task table
+  - create_tasks_table.php
+  - create_models_tasks_table.php

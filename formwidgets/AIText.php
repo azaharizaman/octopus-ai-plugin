@@ -1,8 +1,11 @@
 <?php namespace AzahariZaman\OctopusAI\FormWidgets;
 
-use AzahariZaman\OctopusAI\Models\OctopusAISettings as Settings;
 use Backend\Classes\FormWidgetBase;
-use AzahariZaman\OctopusAI\Classes\OpenAIClient as Client;
+use AzahariZaman\OctopusAI\Classes\Inference\InferTextPrompt;
+use AzahariZaman\OctopusAI\Classes\Inference\InferTextRewrite;
+use AzahariZaman\OctopusAI\Models\OctopusAISettings as Settings;
+use AzahariZaman\OctopusAI\Classes\Inference\InferTextCompletion;
+use AzahariZaman\OctopusAI\Classes\Inference\InferTextSummarization;
 
 /**
  * AIText Form Widget
@@ -11,6 +14,13 @@ use AzahariZaman\OctopusAI\Classes\OpenAIClient as Client;
  */
 class AIText extends FormWidgetBase
 {
+    protected $allowedTasks = [
+        'text-completion',
+        'text-summarization',
+        'text-rewrite',
+        'chat',
+    ];
+
     protected $defaultAlias = 'octopusai_ai_text';
 
     public function init()
@@ -29,16 +39,13 @@ class AIText extends FormWidgetBase
         $this->vars['placeholder'] = $this->formField->getPlaceholder();
         $this->vars['value'] = $this->getLoadValue();
         $this->vars['model'] = $this->model;
-        $this->vars['eventHandlerRewrite'] = $this->getEventHandler('onRewrite');
-        $this->vars['eventHandlerComplete'] = $this->getEventHandler('onComplete');
-        $this->vars['eventHandlerSummarize'] = $this->getEventHandler('onSummarize');
-        $this->vars['eventHandlerElaborate'] = $this->getEventHandler('onElaborate');
-        $this->vars['eventHandlerPrompt'] = $this->getEventHandler('onPrompt');
+        $this->vars['eventHandlerOnInferTextCompletion'] = $this->getEventHandler('onInferTextCompletion');
+        $this->vars['eventHandlerOnInferTextSummarization'] = $this->getEventHandler('onInferTextSummarization');
+        $this->vars['eventHandlerOnInferTextRewrite'] = $this->getEventHandler('onInferTextRewrite');
+        $this->vars['eventHandlerOnInferTextPrompt'] = $this->getEventHandler('onInferTextPrompt');
     }
     public function loadAssets()
     {
-        // $this->addCss('css/aitext.css');
-        // $this->addJs('js/aitext.js');
     }
 
     public function getSaveValue($value)
@@ -46,14 +53,12 @@ class AIText extends FormWidgetBase
         return $value;
     }
 
-    public function onExecute()
+    public function onInferTextCompletion()
     {
-        $value = post($this->getFieldName());
-        $task = post('task');
+        $input = post($this->getFieldName());
 
-        $client = new Client;
-
-        $response = $client->execute($task, $value);
+        $inference = new InferTextCompletion();
+        $response = $inference->getResponse($input);
 
         $this->prepareVars();
         $this->vars['value'] = $response;
@@ -61,4 +66,43 @@ class AIText extends FormWidgetBase
         return ['#'.$this->getId() => $this->makePartial('aitext')];
     }
 
+    public function onInferTextSummarization()
+    {
+        $input = post($this->getFieldName());
+
+        $inference = new InferTextSummarization();
+        $response = $inference->getResponse($input);
+
+        $this->prepareVars();
+        $this->vars['value'] = $response;
+
+        return ['#'.$this->getId() => $this->makePartial('aitext')];
+    }
+
+    public function onInferTextRewrite()
+    {
+        $input = post($this->getFieldName());
+        $rewriteMode = post('mode')? 'text-rewrite-expand' : 'text-rewrite';
+
+        $inference = new InferTextRewrite($rewriteMode);
+        $response = $inference->getResponse($input);
+
+        $this->prepareVars();
+        $this->vars['value'] = $response;
+
+        return ['#'.$this->getId() => $this->makePartial('aitext')];
+    }
+
+    public function onInferTextPrompt()
+    {
+        $input = post($this->getFieldName());
+
+        $inference = new InferTextPrompt();
+        $response = $inference->getResponse($input);
+
+        $this->prepareVars();
+        $this->vars['value'] = $response;
+
+        return ['#'.$this->getId() => $this->makePartial('aitext')];
+    }
 }

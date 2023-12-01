@@ -23,7 +23,7 @@ tabs:
                 field: enable_open_ai
                 action: show
                 condition: checked
-        aimodel:
+        openai_model:
             label: AI Model
             type: text
             span: auto
@@ -143,8 +143,10 @@ tabs:
                 condition: checked
         sentiment_analysis_model:
             label: Sentiment Analysis Model
-            type: text
-            default: distilbert-base-uncased-finetuned-sst-2-english
+            type: dropdown
+            options:
+                cardiffnlp/twitter-roberta-base-sentiment: cardiffnlp/twitter-roberta-base-sentiment
+                distilbert-base-uncased-finetuned-sst-2-english: distilbert-base-uncased-finetuned-sst-2-english
             comment: The model to use for sentiment analysis
             span: auto
             tab: Configurations
